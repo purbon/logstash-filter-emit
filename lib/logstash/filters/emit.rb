@@ -22,7 +22,7 @@ class LogStash::Filters::Emit < LogStash::Filters::Base
     return unless filter?(event)
     @attributes.each do |attr|
       clone = event.clone
-      @attribtues.each do |field|
+      @attributes.each do |field|
         next if field == attr
         @clone.remove(field)
       end
