@@ -34,6 +34,7 @@ class LogStash::Filters::Emit < LogStash::Filters::Base
       @logger.debug("Cloned event", :clone => clone, :event => event)
       yield clone
     end
+    event.cancel
   end
 
 end # class LogStash::Filters::Clone
