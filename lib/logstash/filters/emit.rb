@@ -10,6 +10,9 @@ class LogStash::Filters::Emit < LogStash::Filters::Base
   # Key used to match the new event
   config :key, :validate => :string, :required => true
 
+  # Field name used to store the emited attribute
+  config :field, :validate => :string, :required => true
+
   # Collection of attributes used to create the new events
   config :attributes, :validate => :array, :required => true
 
@@ -22,9 +25,10 @@ class LogStash::Filters::Emit < LogStash::Filters::Base
     return unless filter?(event)
     @attributes.each do |attr|
       clone = event.clone
+      clone[@field]  = attr
+      clone["value"] = clone[attr]
       @attributes.each do |field|
-        next if field == attr
-        @clone.remove(field)
+        clone.remove(field)
       end
       filter_matched(clone)
       @logger.debug("Cloned event", :clone => clone, :event => event)
