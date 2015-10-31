@@ -3,9 +3,9 @@ require "logstash/filters/base"
 require "logstash/namespace"
 
 # From an contained event, it emits several ones by using their attributes
-class LogStash::Filters::Emit < LogStash::Filters::Base
+class LogStash::Filters::Transducer < LogStash::Filters::Base
 
-  config_name "emit"
+  config_name "transducer"
 
   # Key used to match the new event
   config :key, :validate => :string, :required => true

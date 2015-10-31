@@ -1,13 +1,13 @@
 Gem::Specification.new do |s|
 
-  s.name            = 'logstash-filter-emit'
+  s.name            = 'logstash-filter-transducer'
   s.version         = '0.0.1'
   s.licenses        = ['Apache License (2.0)']
-  s.summary         = "The emit filter, creates a set of events from a given one."
+  s.summary         = "The transducer filter, creates a set of new events from a collection of properties of one event."
   s.description     = "This gem is a logstash plugin required to be installed on top of the Logstash core pipeline using $LS_HOME/bin/plugin install gemname. This gem is not a stand-alone program"
   s.authors         = ["Pere Urbon-Bayes"]
   s.email           = 'pere.urbon@elastic.co'
-  s.homepage        = "https://github.com/purbon/logstash-filter-emit"
+  s.homepage        = "https://github.com/purbon/logstash-filter-transducer"
   s.require_paths = ["lib"]
 
   # Files

@@ -1,2 +1,2 @@
 require "logstash/devutils/rspec/spec_helper"
-require "logstash/filters/emit"
+require "logstash/filters/transducer"
