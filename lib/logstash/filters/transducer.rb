@@ -2,7 +2,9 @@
 require "logstash/filters/base"
 require "logstash/namespace"
 
-# From an contained event, it emits several ones by using their attributes
+# It splits a given event properties into several new ones where basically
+# a set of attributes are used as a single value. This filter is useful when 
+# you have a data format
 class LogStash::Filters::Transducer < LogStash::Filters::Base
 
   config_name "transducer"
@@ -16,11 +18,9 @@ class LogStash::Filters::Transducer < LogStash::Filters::Base
   # Collection of attributes used to create the new events
   config :attributes, :validate => :array, :required => true
 
-  public
   def register
   end
 
-  public
   def filter(event)
     return unless filter?(event)
     @attributes.each do |attr|
