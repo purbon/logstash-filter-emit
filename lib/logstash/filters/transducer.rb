@@ -9,17 +9,13 @@ class LogStash::Filters::Transducer < LogStash::Filters::Base
 
   config_name "transducer"
 
-  # Key used to match the new event
-  config :key, :validate => :string, :required => true
-
   # Field name used to store the emited attribute
-  config :field, :validate => :string, :required => true
+  config :field, :validate => :string, :default => "target"
 
   # Collection of attributes used to create the new events
   config :attributes, :validate => :array, :required => true
 
-  def register
-  end
+  def register; end;
 
   def filter(event)
     return unless filter?(event)
@@ -31,10 +27,9 @@ class LogStash::Filters::Transducer < LogStash::Filters::Base
         clone.remove(field)
       end
       filter_matched(clone)
-      @logger.debug("Cloned event", :clone => clone, :event => event)
+      @logger.debug("Generated event", :clone => clone, :event => event)
       yield clone
     end
     event.cancel
   end
-
-end # class LogStash::Filters::Clone
+end
